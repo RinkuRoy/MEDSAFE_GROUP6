@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient's Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header">
+        <h1 class="logo">Medsafe</h1>
+        <h2>Patient's Dashboard</h2>
+    </div>
+    <div class="content">
+        <div class="patient-list">
+            <h3>List of Patients</h3>
+            <ul id="patientList">
+                <!-- Example patient with patient ID -->
+                <li data-patient-id="100001">1 - Rithwick</li>
+                <li data-patient-id="100002">2 - Sajib Ghosh</li>
+                <li data-patient-id="100003">3 - Abu Sayed</li>
+                <li data-patient-id="100004">4 - Rinku Roy</li>
+                <li data-patient-id="100005">5 - Ann jose</li>
+                <li data-patient-id="100006">6 - megha</li>
+                <li data-patient-id="100007">1 - Shraboni</li>
+                <!-- More patients -->
+            </ul>
+            <button id="showInfoBtn" disabled>Show Information</button>
+        </div>
+        <div class="patient-info" id="patientInfoSection">
+            <!-- Patient information will be displayed here -->
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

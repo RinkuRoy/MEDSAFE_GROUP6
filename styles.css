@@ -1,0 +1,43 @@
+.page-header {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.logo {
+    color: #5cb85c;
+}
+
+.content {
+    width: 80%;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.patient-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.patient-list li {
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-top: 5px;
+}
+
+.patient-list li:hover {
+    background-color: #f0f0f0;
+}
+
+.patient-info {
+    display: none; /* Hidden by default */
+    margin-top: 20px;
+}
+
+/* Add additional styles here to match the layout and design of your Doctor's Portal */
