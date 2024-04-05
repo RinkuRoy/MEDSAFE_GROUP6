@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navbar Component -->
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/services">Services</a></li>
+            <li><a href="/finddoctor">Find a Doctor</a></li>
+            <li><a href="/aboutus">About us</a></li>
+            <li><a href="/contactus">Contact us</a></li>
+            <!-- Add more navigation links as needed -->
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Manage My Insurance</h1>
+        <form id="insuranceForm">
+            <label for="insuranceProvider">Insurance Provider:</label>
+            <input type="text" id="insuranceProvider" name="insuranceProvider" required>
+
+            <label for="policyNumber">Policy Number:</label>
+            <input type="text" id="policyNumber" name="policyNumber" required>
+
+            <label for="coverage">Coverage:</label>
+            <input type="text" id="coverage" name="coverage" required>
+
+            <button type="submit">Save</button>
+        </form>
+
+        <div id="insuranceList">
+            <h2>Insurance Information</h2>
+            <ul id="insuranceItems">
+                <!-- Insurance information will be dynamically added here -->
+            </ul>
+        </div>
+    </div>
+    <!-- Footer Component -->
+    <footer>
+        <p>Copyright &copy; 2024, MedSafe. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
