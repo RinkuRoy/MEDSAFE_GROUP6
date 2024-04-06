@@ -1,0 +1,76 @@
+<!-- <div id="appointmentHistoryContainer"></div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const currentUser = sessionStorage.getItem('currentUser');
+    const users = JSON.parse(localStorage.getItem('users')) || {};
+    const user = users[currentUser];
+    const container = document.getElementById('appointmentHistoryContainer');
+
+    if (!user.appointmentHistory.length) {
+        container.innerHTML = '<p>No appointment history found.</p>';
+        return;
+    }
+
+    user.appointmentHistory.forEach(appointment => {
+        const div = document.createElement('div');
+        div.innerHTML = `<h3>${appointment.date}</h3>
+                         <p>Doctor's Name: ${appointment.doctorName}</p>
+                         <p>Summary: ${appointment.summary}</p>`;
+        container.appendChild(div);
+    });
+});
+</script> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Appointment History | Patient Portal</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <nav>
+        <!-- Navigation items -->
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="medical_records.html">Medical Records</a></li>
+            <li><a href="lab_results.html">Lab Results</a></li>
+            <!-- <li><a href="appointment_history.html">Appointment History</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="signup.html">Signup</a></li> -->
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Appointment History</h1>
+        <div id="appointmentHistoryContainer">
+            <!-- Dynamic appointment history will be loaded here -->
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 MEDSAFE. All rights reserved.</p>
+    </footer>
+    <script>
+        // JavaScript for dynamically loading appointment history
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = sessionStorage.getItem('currentUser');
+            const users = JSON.parse(localStorage.getItem('users')) || {};
+            const user = users[currentUser];
+            const container = document.getElementById('appointmentHistoryContainer');
+
+            if (user && user.appointmentHistory.length) {
+                user.appointmentHistory.forEach(appointment => {
+                    const div = document.createElement('div');
+                    div.className = 'appointment-history-entry';
+                    div.innerHTML = `<h2>${appointment.date}</h2>
+                                     <p><strong>Doctor's Name:</strong> ${appointment.doctorName}</p>
+                                     <p><strong>Summary:</strong> ${appointment.summary}</p>`;
+                    container.appendChild(div);
+                });
+            } else {
+                container.innerHTML = '<p>No appointment history found.</p>';
+            }
+        });
+    </script>
+</body>
+</html>

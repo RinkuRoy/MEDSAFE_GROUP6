@@ -2,39 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doctor's Portal</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Patient Portal</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <div class="header">
-        <h1 class="logo">Medsafe</h1>
-        <h2>Doctor's Portal</h2>
+    <nav>
+        <ul>
+            <li><a href="medical_records.html">Medical Records</a></li>
+            <li><a href="lab_results.html">Lab Results</a></li>
+            <li><a href="appointment_history.html">Appointment History</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="signup.html">Signup</a></li>
+        </ul>
+    </nav>
+    <div class="container text-center">
+        <h1>Welcome to MEDSAFE</h1>
+        <p>Welcome to Your Patient Portal!</p>
     </div>
-    <div class="content">
-        <div class="info">
-            <h3>Doctor Information</h3>
-            <form id="doctorInfoForm">
-                <label for="doctorName">Name:</label>
-                <input type="text" id="doctorName" value="Dr. Jane Doe" disabled>
-                
-                <label for="speciality">Speciality:</label>
-                <input type="text" id="speciality" value="Cardiology" disabled>
-                
-                <label for="contactNumber">Contact Number:</label>
-                <input type="tel" id="contactNumber" value="123-456-7890" disabled>
-                
-                <label for="email">Email:</label>
-                <input type="email" id="email" value="janedoe@medsafe.com" disabled>
-
-                <label for="availability">Availability:</label>
-                <textarea id="availability" disabled>Mon - Fri: 9 AM - 5 PM</textarea>
-
-                <button type="button" onclick="enableEditing()">Edit</button>
-                <button type="submit">Update Information</button>
-            </form>
-        </div>
-    </div>
-    <script src="script.js"></script>
+    <button id="logoutButton" onclick="logout()">Logout</button>
+    <footer>
+        <p>&copy; 2024 MEDSAFE. All rights reserved.</p>
+    </footer>
+    <script src="logout.js"></script>
 </body>
 </html>

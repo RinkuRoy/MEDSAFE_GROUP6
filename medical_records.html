@@ -1,0 +1,75 @@
+<!-- <div id="medicalRecordsContainer"></div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const currentUser = sessionStorage.getItem('currentUser');
+    const users = JSON.parse(localStorage.getItem('users')) || {};
+    const user = users[currentUser];
+    const container = document.getElementById('medicalRecordsContainer');
+
+    if (!user.medicalRecords.length) {
+        container.innerHTML = '<p>No medical records found.</p>';
+        return;
+    }
+
+    user.medicalRecords.forEach(record => {
+        const div = document.createElement('div');
+        div.innerHTML = `<h3>${record.date} - ${record.type}</h3>
+                         <p>Physician: ${record.physician}</p>
+                         <p>Summary: ${record.summary}</p>`;
+        container.appendChild(div);
+    });
+});
+</script> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Medical Records | Patient Portal</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <nav>
+        <!-- Navigation items -->
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <!-- <li><a href="medical_records.html">Medical Records</a></li> -->
+            <li><a href="lab_results.html">Lab Results</a></li>
+            <li><a href="appointment_history.html">Appointment History</a></li>
+            <!-- <li><a href="login.html">Login</a></li>
+            <li><a href="signup.html">Signup</a></li> -->
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Medical Records</h1>
+        <div id="medicalRecordsContainer">
+            <!-- Dynamic medical records will be loaded here -->
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 MEDSAFE. All rights reserved.</p>
+    </footer>
+    <script>
+        // JavaScript for dynamically loading medical records
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = sessionStorage.getItem('currentUser');
+            const users = JSON.parse(localStorage.getItem('users')) || {};
+            const user = users[currentUser];
+            const container = document.getElementById('medicalRecordsContainer');
+
+            if (user && user.medicalRecords.length) {
+                user.medicalRecords.forEach(record => {
+                    const div = document.createElement('div');
+                    div.className = 'record-entry';
+                    div.innerHTML = `<h2>${record.date} - ${record.type}</h2>
+                                     <p><strong>Physician:</strong> ${record.physician}</p>
+                                     <p><strong>Summary:</strong> ${record.summary}</p>`;
+                    container.appendChild(div);
+                });
+            } else {
+                container.innerHTML = '<p>No medical records found.</p>';
+            }
+        });
+    </script>
+</body>
+</html>

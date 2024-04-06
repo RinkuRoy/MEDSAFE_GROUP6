@@ -1,0 +1,75 @@
+<!-- <div id="labResultsContainer"></div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const currentUser = sessionStorage.getItem('currentUser');
+    const users = JSON.parse(localStorage.getItem('users')) || {};
+    const user = users[currentUser];
+    const container = document.getElementById('labResultsContainer');
+
+    if (!user.labResults.length) {
+        container.innerHTML = '<p>No lab results found.</p>';
+        return;
+    }
+
+    user.labResults.forEach(result => {
+        const div = document.createElement('div');
+        div.innerHTML = `<h3>${result.date} - ${result.type}</h3>
+                         <p>Results: ${result.results}</p>
+                         <p>Comments: ${result.comments}</p>`;
+        container.appendChild(div);
+    });
+});
+</script> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab Results | Patient Portal</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <nav>
+        <!-- Navigation items -->
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="medical_records.html">Medical Records</a></li>
+            <!-- <li><a href="lab_results.html">Lab Results</a></li> -->
+            <li><a href="appointment_history.html">Appointment History</a></li>
+            <!-- <li><a href="login.html">Login</a></li>
+            <li><a href="signup.html">Signup</a></li> -->
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Lab Results</h1>
+        <div id="labResultsContainer">
+            <!-- Dynamic lab results will be loaded here -->
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 MEDSAFE. All rights reserved.</p>
+    </footer>
+    <script>
+        // JavaScript for dynamically loading lab results
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = sessionStorage.getItem('currentUser');
+            const users = JSON.parse(localStorage.getItem('users')) || {};
+            const user = users[currentUser];
+            const container = document.getElementById('labResultsContainer');
+
+            if (user && user.labResults.length) {
+                user.labResults.forEach(result => {
+                    const div = document.createElement('div');
+                    div.className = 'lab-result-entry';
+                    div.innerHTML = `<h2>${result.date} - ${result.type}</h2>
+                                     <p><strong>Results:</strong> ${result.results}</p>
+                                     <p><strong>Comments:</strong> ${result.comments}</p>`;
+                    container.appendChild(div);
+                });
+            } else {
+                container.innerHTML = '<p>No lab results found.</p>';
+            }
+        });
+    </script>
+</body>
+</html>
