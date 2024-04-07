@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Financial Bill - Medsafe</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+        header, footer {
+            text-align: center;
+            padding: 1em;
+            background-color: #87CEEB; /* Sky blue background */
+            color: white;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #fff;
+        }
+        #content {
+            min-height: calc(100vh - 140px); /* Adjust based on header and footer height */
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input, select, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        .service-list {
+            margin-bottom: 20px;
+        }
+        .service-item {
+            background: #f0f0f0;
+            padding: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .service-item button {
+            padding: 5px 10px;
+        }
+        footer {
+            position: relative;
+            height: 60px; /* Footer height */
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Services</a>
+            <a href="#">Find a Doctor</a>
+            <a href="#">About Us</a>
+            <a href="#">Contact Us</a>
+        </nav>
+    </header>
+
+    <div id="content">
+        <div class="container">
+            <h1>Bill Generator</h1>
+            <form id="billForm">
+                <input type="text" id="patientName" placeholder="Patient's Name" required>
+                <input type="text" id="patientId" placeholder="Patient ID" required>
+                <select id="serviceDropdown">
+                    <option value="" disabled selected>Select Service</option>
+                    <option value="Consultation-100">Consultation ($100)</option>
+                    <option value="XRay-50">X-Ray ($50)</option>
+                    <option value="Blood Test-30">Blood Test ($30)</option>
+                </select>
+                <button type="button" onclick="addService()">Add Service</button>
+            </form>
+            <div id="selectedServices" class="service-list">
+                <!-- Selected services will be listed here -->
+            </div>
+            <button type="button" onclick="generateBill()">Generate Bill</button>
+            <div class="bill-display" id="billDisplay">
+                <h2>Bill Details</h2>
+                <!-- Bill details will be inserted here -->
+            </div>
+            <div class="action-buttons">
+                <button onclick="printBill()">Print Bill</button>
+                <button onclick="sendMail()">Send to Mail</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        Copyright &copy; 2024, Medsafe. All rights reserved.
+    </footer>
+
+    <script>
+        let services = [];
+
+        function addService() {
+            const dropdown = document.getElementById('serviceDropdown');
+            const selectedOption = dropdown.options[dropdown.selectedIndex];
+            if (selectedOption && selectedOption.value) {
+                const parts = selectedOption.value.split('-');
+                const serviceName = parts[0];
+                const serviceCost = parseFloat(parts[1]);
+
+                if (!isNaN(serviceCost)) {
+                    services.push({
+                        name: serviceName,
+                        cost: serviceCost
+                    });
+                    updateSelectedServicesList();
+                    dropdown.selectedIndex = 0; // Reset dropdown for next selection
+                } else {
+                    console.error('Service cost is not a valid number:', parts[1]);
+                }
+            }
+        }
+
+        function updateSelectedServicesList() {
+            const listContainer = document.getElementById('selectedServices');
+            listContainer.innerHTML = ''; // Clear current list
+            services.forEach((service, index) => {
+                const serviceItem = document.createElement('div');
+                serviceItem.className = 'service-item';
+                serviceItem.innerHTML = `${service.name} - $${service.cost.toFixed(2)}
+                    <button onclick="removeService(${index})">Remove</button>`;
+                listContainer.appendChild(serviceItem);
+            });
+        }
+
+        function removeService(index) {
+            services.splice(index, 1); // Remove the service from the array
+            updateSelectedServicesList(); // Update the UI
+        }
+
+        function generateBill() {
+            const patientName = document.getElementById('patientName').value;
+            const patientId = document.getElementById('patientId').value;
+            let billHtml = `<p><strong>Patient Name:</strong> ${patientName}</p>`;
+            billHtml += `<p><strong>Patient ID:</strong> ${patientId}</p>`;
+            let totalCost = 0;
+
+            services.forEach(service => {
+                totalCost += service.cost;
+                billHtml += `<p>${service.name} - $${service.cost.toFixed(2)}</p>`;
+            });
+
+            billHtml += `<p><strong>Total Cost:</strong> $${totalCost.toFixed(2)}</p>`;
+            document.getElementById('billDisplay').innerHTML = billHtml;
+        }
+
+        function printBill() {
+            window.print();
+        }
+
+        function sendMail() {
+            const patientName = document.getElementById('patientName').value;
+            const subject = encodeURIComponent("Financial Bill for " + patientName);
+            const body = encodeURIComponent(document.getElementById('billDisplay').innerText);
+            const mailtoLink = `mailto:?subject=${subject}&body=${body}`;
+            window.location.href = mailtoLink;
+        }
+    </script>
+</body>
+</html>
