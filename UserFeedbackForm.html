@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Feedback Form - Medsafe</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+        #content {
+            min-height: calc(100vh - 140px); /* Adjust based on header and footer height */
+            padding: 20px;
+        }
+        header, footer {
+            text-align: center;
+            padding: 1em;
+            background-color: #87CEEB; /* Sky blue background */
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+        footer {
+            position: relative;
+            margin-top: -20px; /* Negative value of footer height */
+            clear: both;
+            height: 60px; /* Footer height */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Services</a>
+            <a href="#">Find a Doctor</a>
+            <a href="#">About Us</a>
+            <a href="#">Contact Us</a>
+        </nav>
+    </header>
+
+    <div id="content">
+        <div class="container">
+            <h1>User Feedback Form</h1>
+            <form id="feedbackForm">
+                <label for="userName">Name:</label>
+                <input type="text" id="userName" name="userName" required><br><br>
+
+                <label for="userEmail">Email:</label>
+                <input type="email" id="userEmail" name="userEmail" required><br><br>
+
+                <label for="feedbackType">Feedback Type:</label>
+                <select id="feedbackType" name="feedbackType" required>
+                    <option value="complaint">Complaint</option>
+                    <option value="suggestion">Suggestion</option>
+                    <option value="compliment">Compliment</option>
+                </select><br><br>
+
+                <label for="feedbackMessage">Feedback:</label>
+                <textarea id="feedbackMessage" name="feedbackMessage" rows="4" required></textarea><br><br>
+
+                <button type="submit">Submit Feedback</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        Copyright &copy; 2024, Medsafe. All rights reserved.
+    </footer>
+
+    <script>
+        document.getElementById('feedbackForm').onsubmit = function(event) {
+            event.preventDefault();
+            // Implement submission logic here
+            alert('Feedback submitted successfully!');
+        };
+    </script>
+</body>
+</html>
